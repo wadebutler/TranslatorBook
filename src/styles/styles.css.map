@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "ACAA,AAAA,IAAI,CAAC;EACD,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;CACzB;;AAED,AAAA,WAAW,CAAC;EACR,OAAO,EAAE,IAAI;CAChB;;AAED,AAAA,QAAQ,CAAC;EACL,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;CACzB",
+    "sources": [
+        "styles.scss",
+        "partials/_translator.scss"
+    ],
+    "names": [],
+    "file": "styles.css"
+}
