@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './Components/Header';
-import TranslatorText from './Components/TranslatorText';
+import Translator from './Components/Translator';
 import Footer from './Components/Footer';
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <Header />
       
-      <TranslatorText />
+      <Translator />
 
       <Footer />
     </div>
