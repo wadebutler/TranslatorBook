@@ -11,10 +11,11 @@ class Translator extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            language: {},
+            originalText: "",
         }
     }
 
+    // get languages from API and place them in the select as options
     componentDidMount = () => {
         axios.get(languagesURL, {
             params: {
@@ -22,20 +23,49 @@ class Translator extends Component {
                 ui: 'en',
             }
         }).then((results) => {
-            console.log(results.data.langs)
+            // console.log(results.data.langs)
+            const select = document.getElementById("translateTo");
+
+            for (let key in results.data.langs) {
+                if (results.data.langs.hasOwnProperty(key)) {
+                    const option = document.createElement('option');
+                    option.value = key;
+                    option.innerHTML = results.data.langs[key];
+                    select.appendChild(option);
+                }
+            }
+        })
+    }
+
+    translate = (e) => {
+        e.preventDefault();
+
+        axios.get(translateURL, {
+            params: {
+
+            }
+        })
+    }
+
+    // put text from text area into state and await translation
+    handleChange = (e) => {
+        e.preventDefault();
+
+        this.setState({
+            originalText: document.getElementById("translateText").value
         })
     }
 
     render() {
         return (
             <main>
-                <label htmlFor="toTranslate">Enter Text to
-                    <textarea placeholder="Hello" name="toTranslate" id="toTranslate" cols="30" rows="10"></textarea>
+                <label htmlFor="translateText">Enter Text to
+                    <textarea onChange={this.handleChange} placeholder="Hello" name="translateText" id="translateText" cols="30" rows="10"></textarea>
                 </label>
 
-                <label htmlFor="selectFrom">Language:
-                    <select name="selectFrom" id="selectFrom">
-                        <option selected="selected">Translate to?</option>
+                <label htmlFor="translateTo">Language:
+                    <select name="translateTo" id="translateTo">
+                        <option value="default">Translate to ↓</option>
                     </select>
                 </label>
 
