@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+// import "../styles/styles.css";
 
 // URLS FOR YANDEX API
 const translateURL = "https://translate.yandex.net/api/v1.5/tr.json/translate";
@@ -79,17 +80,23 @@ class Translator extends Component {
     render() {
         return (
             <main>
-                <label htmlFor="translateText">Enter Text to
-                    <textarea onChange={this.handleTextChange} placeholder="Hello" name="translateText" id="translateText" cols="30" rows="10"></textarea>
+                <label className="visuallyHidden" htmlFor="translateText">
+                    Text to Translate
                 </label>
+                <textarea onChange={this.handleTextChange} placeholder="Hello" name="translateText" id="translateText" cols="30" rows="10"></textarea>
 
-                <label htmlFor="translateTo">Language:
-                    <select onChange={this.handleLanguageSelect} name="translateTo" id="translateTo">
-                        <option value="default">Translate to ↓</option>
-                    </select>
+                <label className="visuallyHidden" htmlFor="translateTo">
+                    Language select
                 </label>
+                <select onChange={this.handleLanguageSelect} name="translateTo" id="translateTo">
+                    <option value="default">Translate to ↓</option>
+                </select>
 
-                <button onClick={this.translate}>Translate</button>
+                <label className="visuallyHidden" htmlFor="translateButton">
+                    translate button
+                </label>
+                <button name="translateButton" id="translateButton" onClick={this.translate}>Translate</button>
+                
 
                 <p className="translatedText"></p>
             </main>
