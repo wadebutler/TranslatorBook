@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import firebase from 'firebase';
 // import "../styles/styles.css";
 
 // URLS FOR YANDEX API
@@ -12,9 +13,43 @@ class Translator extends Component {
         super(props);
         this.state = {
             originalText: "",
-            translateTo: "",
+            setLanguage: "",
             translatedText: "",
+            loggedIn: false,
+            userID: "",
         }
+    }
+    //  GIVE THE USER ABILITY TO SIGN INTO THE APP
+    handleLogin = (e) => {
+        e.preventDefault();
+        const provider = new firebase.auth.GoogleAuthProvider();
+
+        firebase.auth().signInWithPopup(provider).then((result) => {
+
+            const token = result.credential.accessToken;
+            const user = result.user;
+
+            this.setState({
+                loggedIn: true,
+                userID: result.user.uid,
+            })
+        }).then(() => {
+            document.querySelector(".title").style.color = "red"
+        })
+    }
+
+    // GIVE THE USER ABILITY TO SIGN OUT OF THE APP
+    handleSignout = (e) => {
+        e.preventDefault()
+
+        firebase.auth().signOut().then(() => {
+            this.setState({
+                loggedIn: false,
+                userID: "",
+            })
+        }).then(() => {
+            document.querySelector(".title").style.color = "black"
+        })
     }
 
     // GET LANGUAGES FROM API AND PLACE THEM IN THE SELECT AS OPTIONS
@@ -25,7 +60,7 @@ class Translator extends Component {
                 ui: 'en',
             }
         }).then((results) => {
-            const select = document.getElementById("translateTo");
+            const select = document.getElementById("setLanguage");
 
             for (let key in results.data.langs) {
                 if (results.data.langs.hasOwnProperty(key)) {
@@ -43,7 +78,7 @@ class Translator extends Component {
         e.preventDefault();
 
         this.setState({
-            translateTo: document.getElementById("translateTo").value
+            setLanguage: document.getElementById("setLanguage").value
         })
     }
 
@@ -64,7 +99,7 @@ class Translator extends Component {
             params: {
                 key: apiKey,
                 text: this.state.originalText,
-                lang: this.state.translateTo,
+                lang: this.state.setLanguage,
             }
         }).then((results) => {
             this.setState({
@@ -77,18 +112,31 @@ class Translator extends Component {
         }, 1000)
     }
 
+    sendToFirebase = (e) => {
+        e.preventDefault()
+        const dbRef = firebase.database().ref()
+        dbRef.push({
+            original: this.state.originalText,
+            translated: this.state.translatedText
+        })
+    }
+
     render() {
         return (
             <main>
+
+                <button onClick={this.handleLogin}>Login</button>
+                <button onClick={this.handleSignout}>Logout</button>
+                
                 <label className="visuallyHidden" htmlFor="translateText">
                     Text to Translate
                 </label>
                 <textarea onChange={this.handleTextChange} placeholder="Hello" name="translateText" id="translateText" cols="30" rows="10"></textarea>
 
-                <label className="visuallyHidden" htmlFor="translateTo">
+                <label className="visuallyHidden" htmlFor="setLanguage">
                     Language select
                 </label>
-                <select onChange={this.handleLanguageSelect} name="translateTo" id="translateTo">
+                <select onChange={this.handleLanguageSelect} name="setLanguage" id="setLanguage">
                     <option value="default">Translate to ↓</option>
                 </select>
 
@@ -96,6 +144,8 @@ class Translator extends Component {
                     translate button
                 </label>
                 <button name="translateButton" id="translateButton" onClick={this.translate}>Translate</button>
+
+                <button onClick={this.sendToFirebase}>Save</button>
                 
 
                 <p className="translatedText"></p>
