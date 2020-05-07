@@ -78,14 +78,13 @@ class Translator extends Component {
         }, 1000)
     }
 
+    // SEND TRANSLATIONS TO BE SAVED IN FIREBASE
     sendToFirebase = (e) => {
         e.preventDefault()
-        const dbRef = firebase.database().ref(`${this.state.userID}`)
+        const dbRef = firebase.database().ref(`${this.props.userIdProp}`)
         dbRef.push({
-            item: {
-                original: this.state.originalText,
-                translated: this.state.translatedText,
-            }   
+            original: this.state.originalText,
+            translated: this.state.translatedText,   
         })
     }
 

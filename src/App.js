@@ -54,17 +54,24 @@ class App extends Component {
         <div className="App">
           <header>
             <h1 className="title">Translator</h1>
-
-            <button onClick={this.handleLogin}>Login</button>
-            <button onClick={this.handleSignout}>Logout</button>
+            {this.state.loggedIn ? 
+              <button onClick={this.handleSignout}>Logout</button>
+            : 
+              <button onClick={this.handleLogin}>Login</button>
+            }
+            
 
             <NavLink to="/">Translator</NavLink>
             <NavLink to="/saved">Saved Translations</NavLink>
           </header>
           
           <Route exact path="/"  component={() => 
-            <Translator userIdProp={this.state.userID}/>
+            <Translator 
+              userIdProp={this.state.userID}
+              loggedInProp={this.state.loggedIn}
+            />
           } />
+          
           <Route exact path="/saved" component={SavedTranslations} />
 
           <Footer />
