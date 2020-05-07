@@ -1,13 +1,11 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import firebase from 'firebase';
-// import Header from './Components/Header';
 import Translator from './Components/Translator';
 import Footer from './Components/Footer';
 import SavedTranslations from './Components/SavedTranslations';
-
-// import { Component } from "react";
+import "./styles/styles.css";
 
 class App extends Component {
   constructor() {
@@ -29,9 +27,10 @@ class App extends Component {
         userID: result.user.uid,
       })
 
-    }).then(() => {
-      document.querySelector(".title").style.color = "red"
     })
+    // .then(() => {
+    //   document.querySelector(".title").style.color = "red"
+    // })
   }
 
   // GIVE THE USER ABILITY TO SIGN OUT OF THE APP
@@ -55,22 +54,22 @@ class App extends Component {
           <header>
             <h1 className="title">Translator</h1>
 
-            <button onClick={this.handleLogin}>Login</button>
-            <button onClick={this.handleSignout}>Logout</button>
-
-          
-            <NavLink to="/">Translator</NavLink>
-            <NavLink to="/saved">Saved Translations</NavLink>
+            {this.state.loggedIn ? <>
+              <button onClick={this.handleSignout}>Logout</button>
+              <NavLink to="/">Translator</NavLink>
+              <NavLink to="/saved">Saved Translations</NavLink>
+            </> : <>
+              <button onClick={this.handleLogin}>Login</button>
+            </> }
           </header>
           
           <Route exact path="/"  component={() => 
-            <Translator 
-              userIdProp={this.state.userID}
-              loggedInProp={this.state.loggedIn}
-            />
-          } />
+            <Translator userIdProp={this.state.userID} loggedInProp={this.state.loggedIn}/> 
+          }/>
           
-          <Route exact path="/saved" component={SavedTranslations} />
+          <Route exact path="/saved" render={() => (
+            this.state.loggedIn ? (<SavedTranslations/>) : (<Redirect to="/"/>)
+          )}/>
 
           <Footer />
         </div>

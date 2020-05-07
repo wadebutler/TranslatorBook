@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import firebase from '../firebase';
-// import "../styles/styles.css";
+
 
 // URLS FOR YANDEX API
 const translateURL = "https://translate.yandex.net/api/v1.5/tr.json/translate";
@@ -109,8 +109,7 @@ class Translator extends Component {
                 </label>
                 <button name="translateButton" id="translateButton" onClick={this.translate}>Translate</button>
 
-                <button onClick={this.sendToFirebase}>Save</button>
-                
+                {this.props.loggedInProp ? <button onClick={this.sendToFirebase}>Save</button> : <span></span>}
 
                 <p className="translatedText"></p>
             </main>

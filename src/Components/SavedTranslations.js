@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import firebase from '../firebase';
 
 class SavedTranslations extends Component {
+
     // turns users database into an array and places it in <li> elements on the page
     componentDidMount = (e) => {
         const array = []
@@ -32,7 +33,7 @@ class SavedTranslations extends Component {
     render() {
         return (
             <div>
-                <h2>Saved Translations</h2>
+                <h1>Saved Translations</h1>
                 <ul className="displaySaved"></ul>
             </div>
         )
