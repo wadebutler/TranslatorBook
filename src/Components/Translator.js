@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import firebase from 'firebase';
+import firebase from '../firebase';
 // import "../styles/styles.css";
 
 // URLS FOR YANDEX API
@@ -15,41 +15,7 @@ class Translator extends Component {
             originalText: "",
             setLanguage: "",
             translatedText: "",
-            loggedIn: false,
-            userID: "",
         }
-    }
-    //  GIVE THE USER ABILITY TO SIGN INTO THE APP
-    handleLogin = (e) => {
-        e.preventDefault();
-        const provider = new firebase.auth.GoogleAuthProvider();
-
-        firebase.auth().signInWithPopup(provider).then((result) => {
-
-            const token = result.credential.accessToken;
-            const user = result.user;
-
-            this.setState({
-                loggedIn: true,
-                userID: result.user.uid,
-            })
-        }).then(() => {
-            document.querySelector(".title").style.color = "red"
-        })
-    }
-
-    // GIVE THE USER ABILITY TO SIGN OUT OF THE APP
-    handleSignout = (e) => {
-        e.preventDefault()
-
-        firebase.auth().signOut().then(() => {
-            this.setState({
-                loggedIn: false,
-                userID: "",
-            })
-        }).then(() => {
-            document.querySelector(".title").style.color = "black"
-        })
     }
 
     // GET LANGUAGES FROM API AND PLACE THEM IN THE SELECT AS OPTIONS
@@ -114,19 +80,18 @@ class Translator extends Component {
 
     sendToFirebase = (e) => {
         e.preventDefault()
-        const dbRef = firebase.database().ref()
+        const dbRef = firebase.database().ref(`${this.state.userID}`)
         dbRef.push({
-            original: this.state.originalText,
-            translated: this.state.translatedText
+            item: {
+                original: this.state.originalText,
+                translated: this.state.translatedText,
+            }   
         })
     }
 
     render() {
         return (
             <main>
-
-                <button onClick={this.handleLogin}>Login</button>
-                <button onClick={this.handleSignout}>Logout</button>
                 
                 <label className="visuallyHidden" htmlFor="translateText">
                     Text to Translate
