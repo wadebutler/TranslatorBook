@@ -54,13 +54,11 @@ class App extends Component {
         <div className="App">
           <header>
             <h1 className="title">Translator</h1>
-            {this.state.loggedIn ? 
-              <button onClick={this.handleSignout}>Logout</button>
-            : 
-              <button onClick={this.handleLogin}>Login</button>
-            }
-            
 
+            <button onClick={this.handleLogin}>Login</button>
+            <button onClick={this.handleSignout}>Logout</button>
+
+          
             <NavLink to="/">Translator</NavLink>
             <NavLink to="/saved">Saved Translations</NavLink>
           </header>
