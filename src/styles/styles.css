@@ -151,6 +151,10 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   padding: 0;
 }
 
+a {
+  text-decoration: none;
+}
+
 .clearfix:after {
   visibility: hidden;
   display: block;

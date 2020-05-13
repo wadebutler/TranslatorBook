@@ -19,12 +19,12 @@ class SavedTranslations extends Component {
             const display =  document.querySelector(".displaySaved");
 
             const saved = Array.from({ length: array.length }).map((_, i) => {
-                const el = document.createElement('li');
+                const element = document.createElement('li');
                 // const btn = document.createElement('BUTTON');
                 // btn.onclick = () => {}
-                el.textContent = `original: ${array[i].original} Translation: ${array[i].translated}`;
+                element.textContent = `original: ${array[i].original} Translation: ${array[i].translated}`;
                 // el.appendChild(btn)
-                return el;
+                return element;
             });
             display.append(...saved);
         })
@@ -34,6 +34,7 @@ class SavedTranslations extends Component {
         return (
             <div>
                 <h1>Saved Translations</h1>
+                {/* <button></button> */}
                 <ul className="displaySaved"></ul>
             </div>
         )

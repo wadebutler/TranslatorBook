@@ -55,11 +55,14 @@ class App extends Component {
             <h1 className="title">Translator</h1>
 
             {this.state.loggedIn ? <>
-              <button onClick={this.handleSignout}>Logout</button>
-              <NavLink to="/">Translator</NavLink>
-              <NavLink to="/saved">Saved Translations</NavLink>
+              <button className="log" onClick={this.handleSignout}>Logout</button>
+
+              <div className="navMenu">
+                <NavLink className="navLink" to="/">Translator</NavLink>
+                <NavLink className="navLink" to="/saved">Saved Translations</NavLink>
+              </div>
             </> : <>
-              <button onClick={this.handleLogin}>Login</button>
+              <button className="log" onClick={this.handleLogin}>Login</button>
             </> }
           </header>
           
