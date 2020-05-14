@@ -1,0 +1,15 @@
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    p {
+        text-align: center;
+        margin: 10px;
+
+        a {
+            font-weight: bold;
+        }
+    }
+}

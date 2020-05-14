@@ -1,16 +1,21 @@
 header {
-    .title {
 
+    .title {
+        text-align: center;
     }
 
     .log {
-
+        position: absolute;
+        right: 50px;
+        top: 25px;
     }
 
     .navMenu {
+        text-align: center;
+        margin: 10px auto;
 
         .navLink {
-            
+            margin: 10px;
         }
     }
 }

@@ -71,7 +71,7 @@ class App extends Component {
           }/>
           
           <Route exact path="/saved" render={() => (
-            this.state.loggedIn ? (<SavedTranslations/>) : (<Redirect to="/"/>)
+            this.state.loggedIn ? (<SavedTranslations userIdProp={this.state.userID} />) : (<Redirect to="/"/>)
           )}/>
 
           <Footer />

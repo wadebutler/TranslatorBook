@@ -74,7 +74,7 @@ class Translator extends Component {
         })
 
         setTimeout(() => {
-            document.querySelector(".translatedText").innerHTML = this.state.translatedText
+            document.querySelector(".translatedText").value = this.state.translatedText
         }, 1000)
     }
 
@@ -91,27 +91,28 @@ class Translator extends Component {
     render() {
         return (
             <main>
-                
-                <label className="visuallyHidden" htmlFor="translateText">
-                    Text to Translate
-                </label>
-                <textarea onChange={this.handleTextChange} placeholder="Hello" name="translateText" id="translateText" cols="30" rows="10"></textarea>
+                <div className="translatorForm">
+                    <label className="visuallyHidden" htmlFor="translateText">
+                        Text to Translate</label>
+                    <textarea onChange={this.handleTextChange} placeholder="Hello..." name="translateText" id="translateText" cols="30" rows="10"></textarea>
 
-                <label className="visuallyHidden" htmlFor="setLanguage">
-                    Language select
-                </label>
-                <select onChange={this.handleLanguageSelect} name="setLanguage" id="setLanguage">
-                    <option value="default">Translate to ↓</option>
-                </select>
+                    <label className="visuallyHidden" htmlFor="setLanguage">
+                        Language select</label>
+                    <select onChange={this.handleLanguageSelect} name="setLanguage" id="setLanguage">
+                        <option value="default">Translate to ↓</option>
+                    </select>
 
-                <label className="visuallyHidden" htmlFor="translateButton">
-                    translate button
-                </label>
-                <button name="translateButton" id="translateButton" onClick={this.translate}>Translate</button>
+                    <label className="visuallyHidden" htmlFor="finishedTranslation">Translated Text</label>
+                    <textarea className="translatedText" placeholder="Bonjour..." name="finishedTranslation" id="finishedTranslation" cols="30" rows="10"></textarea>
+                </div>
 
-                {this.props.loggedInProp ? <button onClick={this.sendToFirebase}>Save</button> : <span></span>}
+                <div className="translatorButtons">
+                    <label className="visuallyHidden" htmlFor="translateButton">
+                        translate button</label>
+                    <button name="translateButton" id="translateButton" onClick={this.translate}>Translate</button>
 
-                <p className="translatedText"></p>
+                    {this.props.loggedInProp ? <button onClick={this.sendToFirebase}>Save</button> : <span></span>}
+                </div>
             </main>
         )
     }
