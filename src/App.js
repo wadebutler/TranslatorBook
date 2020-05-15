@@ -42,8 +42,6 @@ class App extends Component {
         loggedIn: false,
         userID: "",
       })
-    }).then(() => {
-      document.querySelector(".title").style.color = "black"
     })
   }
 
@@ -63,6 +61,8 @@ class App extends Component {
               </div>
             </> : <>
               <button className="log" onClick={this.handleLogin}>Login</button>
+
+              <div className="emptylink"><p>placeholder</p></div>
             </> }
           </header>
           

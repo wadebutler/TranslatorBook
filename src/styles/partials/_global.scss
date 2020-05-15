@@ -2,6 +2,12 @@ html {
     font-size: 125%;
 }
 
-// a {
-//     color: black;
-// }
+:focus {
+    outline: 2px solid $two;
+    outline-offset: 2px;
+}
+
+a:focus {
+    outline: 2px solid $two;
+    outline-offset: 2px;
+}

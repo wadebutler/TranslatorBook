@@ -1,15 +1,16 @@
 footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    background: $three;
+    border-top: 5px solid $one;
 
     p {
         text-align: center;
-        margin: 10px;
+        margin: 0;
+        color: $one;
+        padding: 25px;
 
         a {
             font-weight: bold;
+            color: $two;
         }
     }
 }

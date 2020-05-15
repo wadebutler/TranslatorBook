@@ -93,8 +93,8 @@ class Translator extends Component {
             <main>
                 <div className="translatorForm">
                     <label className="visuallyHidden" htmlFor="translateText">
-                        Text to Translate</label>
-                    <textarea onChange={this.handleTextChange} placeholder="Hello..." name="translateText" id="translateText" cols="30" rows="10"></textarea>
+                        original text</label>
+                    <textarea onChange={this.handleTextChange} placeholder="Original Text" name="translateText" id="translateText" cols="30" rows="10"></textarea>
 
                     <label className="visuallyHidden" htmlFor="setLanguage">
                         Language select</label>
@@ -103,7 +103,7 @@ class Translator extends Component {
                     </select>
 
                     <label className="visuallyHidden" htmlFor="finishedTranslation">Translated Text</label>
-                    <textarea className="translatedText" placeholder="Bonjour..." name="finishedTranslation" id="finishedTranslation" cols="30" rows="10"></textarea>
+                    <textarea className="translatedText" placeholder="Translated Text" name="finishedTranslation" id="finishedTranslation" cols="30" rows="10"></textarea>
                 </div>
 
                 <div className="translatorButtons">

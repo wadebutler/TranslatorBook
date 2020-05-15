@@ -1,0 +1,33 @@
+section {
+    background: $three;
+
+    h2 {
+        margin: 0;
+        text-align: center;
+        color: $one;
+        padding: 25px;
+    }
+
+    ul {
+        margin: 0;
+        text-align: center;
+        padding-bottom: 25px;
+        height: 400px;
+        overflow: scroll;
+
+        li {
+            list-style: none;
+            color: $one;
+            padding: 10px;
+
+            span {
+                color: $two;
+            }
+
+            button {
+                margin-left: 10px;
+                @include button;
+            }
+        }
+    }
+}

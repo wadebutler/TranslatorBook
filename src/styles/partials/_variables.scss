@@ -1,0 +1,19 @@
+$one: #1302ff;
+$two: #1c8a01;
+$three: #1f1f1f;
+$four: white;
+
+@mixin button {
+    border-radius: 5px;
+    color: $one;
+    background: $three;
+    border: 2px solid $one;
+    transition: 0.3s;
+
+    &:hover, &:focus {
+        color: $three;
+        background: $one;
+    }
+}
+
+// linear-gradient(131deg, rgba(19,2,255,1) 0%, rgba(28,138,1,1) 100%)
