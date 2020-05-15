@@ -234,6 +234,13 @@ header .log:hover, header .log:focus {
   background: #1302ff;
 }
 
+@media (max-width: 500px) {
+  header .log {
+    right: 4px;
+    top: 4px;
+  }
+}
+
 header .navMenu {
   text-align: center;
   margin-top: 15px;
@@ -315,6 +322,24 @@ main .translatorForm select {
 main .translatorForm select:hover, main .translatorForm select:focus {
   color: #1f1f1f;
   background: #1302ff;
+}
+
+@media (max-width: 1022px) {
+  main .translatorForm select {
+    margin: 25px 0;
+  }
+}
+
+@media (max-width: 1022px) {
+  main .translatorForm {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
 }
 
 main .translatorButtons button {

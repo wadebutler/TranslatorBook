@@ -21,6 +21,15 @@ main {
         select {
             margin: 0 25px;
             @include button;
+
+            @media (max-width: 1022px) {
+                margin: 25px 0;
+            }
+        }
+
+        @media (max-width: 1022px) {
+            display: flex;
+            flex-direction: column;
         }
     }
 
