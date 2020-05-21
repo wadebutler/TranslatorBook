@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import firebase from '../firebase';
-import element from './DatabaseToElement'
+import DatabaseToElement from './DatabaseToElement'
 
 class SavedTranslations extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             savedArray: []
         }
@@ -33,6 +33,12 @@ class SavedTranslations extends Component {
         })
     }
 
+    removeElement = (key) => {
+        const dbRef = firebase.database().ref(`${this.props.userIdProp}`).child(key);
+        dbRef.remove();
+        this.dataToArray();
+    }
+
     render() {
         return (
             <section>
@@ -40,7 +46,7 @@ class SavedTranslations extends Component {
                 <ul className="displaySaved">
                     {
                         this.state.savedArray.map((item) => {
-                            return element(item.key, item.original, item.translated)
+                            return <DatabaseToElement key={item.key} item={item} removeElement={this.removeElement} />
                         })
                     }
                 </ul>

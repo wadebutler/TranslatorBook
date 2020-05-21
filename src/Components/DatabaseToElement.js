@@ -1,10 +1,11 @@
 import React from 'react';
-import remove from './DeleteElement';
 
-function DatabaseToElement(key, original, translated) {
+
+function DatabaseToElement(props) {
+    const {item} = props
     return (
-        <li key={key}>
-            <span>Original:</span> {original} <span>Translation:</span> {translated} <button onClick={remove}>X</button>
+        <li>
+            <span>Original:</span> {item.original} <span>Translation:</span> {item.translated} <button onClick={() => {props.removeElement(item.key)}}>X</button>
         </li>
     )
 }
