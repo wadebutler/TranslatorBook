@@ -50,7 +50,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <header>
-            <h1 className="title">Translator</h1>
+            <h1 className="title">Travel Mate</h1>
 
             {this.state.loggedIn ? <>
               <button className="log" onClick={this.handleSignout}>Logout</button>
