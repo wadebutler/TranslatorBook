@@ -281,6 +281,12 @@ main {
   padding: 50px;
 }
 
+@media (max-width: 1022px) {
+  main {
+    padding: 10px;
+  }
+}
+
 main .translatorForm {
   padding: 50px;
 }
@@ -339,6 +345,7 @@ main .translatorForm select:hover, main .translatorForm select:focus {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    padding: 10px;
   }
 }
 

@@ -3,6 +3,10 @@ main {
     background: $three;
     padding: 50px;
 
+    @media (max-width: 1022px) {
+        padding: 10px;
+    }
+
     .translatorForm {
         padding: 50px;
 
@@ -30,6 +34,7 @@ main {
         @media (max-width: 1022px) {
             display: flex;
             flex-direction: column;
+            padding: 10px;
         }
     }
 
